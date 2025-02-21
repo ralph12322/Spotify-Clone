@@ -1,13 +1,14 @@
 import { createContext, useEffect, useRef, useState } from "react";
-import { songsData } from "../assets/assets";
+import axios from 'axios'
+import { url } from "../config/config";
 
 export const PlayerContext = createContext();
 
 // Move Playlist class ABOVE PlayerContextProvider function
 class Playlist {
-  constructor(songsData) {
-    this.originalOrder = [...songsData]; // Keep the original order
-    this.songsData = [...songsData];
+  constructor(songData) {
+    this.originalOrder = [...songData]; // Keep the original order
+    this.songData = [...songData];
     this.currentIndex = 0;
   }
 
@@ -17,35 +18,39 @@ class Playlist {
       let j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]]; // Swap elements
     }
-    this.songsData = array; // Store shuffled playlist
+    this.songData = array; // Store shuffled playlist
     this.currentIndex = 0;
     return array;
   }
 
   current() {
-    return this.songsData[this.currentIndex];
+    return this.songData[this.currentIndex];
   }
 
   next() {
-    this.currentIndex = (this.currentIndex + 1) % this.songsData.length;
-    return this.songsData[this.currentIndex];
+    this.currentIndex = (this.currentIndex + 1) % this.songData.length;
+    return this.songData[this.currentIndex];
   }
 
   previous() {
     this.currentIndex =
-      (this.currentIndex - 1 + this.songsData.length) % this.songsData.length;
-    return this.songsData[this.currentIndex];
+      (this.currentIndex - 1 + this.songData.length) % this.songData.length;
+    return this.songData[this.currentIndex];
   }
 }
 
 const PlayerContextProvider = (props) => {
+
+  const [songData, setSongData] = useState([]);
+  const [albumData, setAlbumData] = useState([]);
+
   const audioRef = useRef();
   const seekBg = useRef();
   const seekBar = useRef();
   
-  const playlistRef = useRef(new Playlist(songsData)); // Store the playlist instance
+  const playlistRef = useRef(new Playlist(songData)); // Store the playlist instance
 
-  const [track, setTrack] = useState(songsData[0]);
+  const [track, setTrack] = useState(songData[0]);
   const [playStatus, setPlayStatus] = useState(false);
   const [loop, setLoop] = useState(false);
   const [kalagayan, setKalagayan] = useState(false);
@@ -61,10 +66,40 @@ const PlayerContextProvider = (props) => {
   const isFirstRender = useRef(true);
   const [playing, setPlaying] = useState(false);
 
-  const playWithId = (id) => {
-    playlistRef.current.currentIndex = id; // Update playlist index
-    setTrack(playlistRef.current.current());
-    setPlaying(true);
+
+  const getSongData = async () =>{
+    try {
+      const response = await axios.get(`${url}/api/song/list`);
+      setSongData(response.data.songs);
+      setTrack(response.data.songs[1])
+    } catch (error) {
+      
+    }
+  }
+
+  const get = async () => {
+    try {
+      const response = await axios.get(`${url}/api/album/list`);
+      setAlbumData(response.data.albums)
+    } catch (error) {
+      
+    }
+  }
+
+  useEffect(()=>{
+    getSongData();
+    get();
+  },[])
+
+  const playWithId = async (id) => {
+    await songData.map((item)=>{
+      if(id === item._id){
+        setTrack(item);
+        }
+    } )
+
+    await audioRef.current.play();
+    setPlayStatus(true);
   };
 
   useEffect(() => {
@@ -83,7 +118,7 @@ const PlayerContextProvider = (props) => {
     setShuffle((prev) => !prev); // Toggle shuffle mode
     if (kalagayan) {
       // If shuffle was enabled, disable it and reset the playlist to its original order
-      playlistRef.current.songsData = [...playlistRef.current.originalOrder];
+      playlistRef.current.songData = [...playlistRef.current.originalOrder];
       setKalagayan(false); // Turn off shuffle mode
     } else {
       // If shuffle is disabled, shuffle the playlist
@@ -115,12 +150,12 @@ const PlayerContextProvider = (props) => {
     const handleAudioEnd = async () => {
       setPlayStatus(false);
       if(track.id === 7){
-        setTrack(songsData[0]);
+        setTrack(songData[0]);
         console.log(shuffle);
       }
  
       if (loop) {
-        setTrack(songsData[track.id]);
+        setTrack(songData[track.id]);
         await audioRef.current.play();
         setPlayStatus(true);
       }
@@ -161,40 +196,48 @@ const PlayerContextProvider = (props) => {
 
   const previous = async () => {
     let nextTrack;
-    if (kalagayan) {
+
+    songData.map((item, index)=> {
+      if (kalagayan) {
    
-      nextTrack = playlistRef.current.previous();
-    } else {
-      
-      if (track.id - 1 < 1) {
-        nextTrack = songsData[0]; 
+        nextTrack = playlistRef.current.previous();
       } else {
-        nextTrack = songsData[track.id - 1];
+        
+        if (track._id === item._id && index > 0) {
+          nextTrack = songData[index - 1];
+        } else {
+          nextTrack = songData[0];
+        }
       }
-    }
+    })
+    
   
-    setTrack(nextTrack);
+    await setTrack(nextTrack);
     await audioRef.current.play();
     setPlayStatus(true);
   };
 
   const next = async () => {
     let nextTrack;
-    if (kalagayan) {
-      // In shuffle mode, use the Playlist class to get the next track
-      nextTrack = playlistRef.current.next();
-    } else {
-      // In non-shuffle mode, check if we are at the last track and wrap back to the first
-      if (track.id + 1 >= songsData.length) {
-        nextTrack = songsData[0]; // Wrap to the first track if at the end
+
+    songData.map((item, index)=> {
+      if (kalagayan) {
+        nextTrack = playlistRef.current.next();
       } else {
-        nextTrack = songsData[track.id + 1];
-      }
-    }
-  
-    setTrack(nextTrack);
-    await audioRef.current.play();
-    setPlayStatus(true);
+        
+        if (track._id === item._id && index < songData.length -1) {
+          nextTrack = songData[index + 1]; 
+          console.log(index);
+          console.log(songData.length);
+        }else{
+          nextTrack = songData[1]
+        }
+      }  
+    })
+      await setTrack(nextTrack);
+      await audioRef.current.play();
+      setPlayStatus(true);
+    
   };
   
 
@@ -245,7 +288,9 @@ const PlayerContextProvider = (props) => {
     isSearch,
     search,
     songName,
-    setSongName
+    setSongName,
+    songData,
+    albumData
   };
 
   return <PlayerContext.Provider value={contextValue}>{props.children}</PlayerContext.Provider>;

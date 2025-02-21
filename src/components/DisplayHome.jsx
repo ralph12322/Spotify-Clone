@@ -1,23 +1,25 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Navbar from './Navbar'
-import { albumsData, songsData } from '../assets/assets'
 import AlbumItem from './AlbumItem'
 import SongItem from './SongItem'
+import { PlayerContext } from '../context/PlayerContext'
 
 const DisplayHome = () => {
+
+  const {songData, albumData} = useContext(PlayerContext);
   return(
     <>
     <Navbar/>
     <div className='mb-4'>
       <h1 className='my-5 font-bold text-2xl'>Featured Charts</h1>
       <div className='flex overflow-auto'>
-      {albumsData.map((item)=>(<AlbumItem key={item.id} name={item.name} desc={item.desc} id={item.id} image={item.image}/>))} 
+      {albumData.map((item, index)=>(<AlbumItem key={index} name={item.name} desc={item.desc} id={item._id} image={item.image}/>))} 
       </div>
     </div>
     <div className='mb-4'>
       <h1 className='my-5 font-bold text-2xl'>Today's Biggest Hits</h1>
       <div className='flex overflow-auto'>
-      {songsData.map((item)=>(<SongItem key={item.id} name={item.name} desc={item.desc} id={item.id} image={item.image}/>))} 
+      {songData.map((item, index)=>(<SongItem key={index} name={item.name} desc={item.desc} id={item._id} image={item.image}/>))} 
       </div>
     </div>
     </>
