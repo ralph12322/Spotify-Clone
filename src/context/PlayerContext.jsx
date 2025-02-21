@@ -41,7 +41,7 @@ const PlayerContextProvider = ({ children }) => {
   const [shuffle, setShuffle] = useState(false);
   const [shuffledSongs, setShuffledSongs] = useState([]);
   const [time, setTime] = useState({ currentTime: { second: 0, minute: 0 }, totalTime: { second: 0, minute: 0 } });
-
+  const [search, setSearch] = useState(false);
   const audioRef = useRef();
   const seekBg = useRef();
   const seekBar = useRef();
@@ -141,7 +141,7 @@ const PlayerContextProvider = ({ children }) => {
           },
         });
         seekBar.current.style.width = `${(currentTime / duration) * 100}%`;
-        seekBar.current.style.backgroundColor = "green";
+        seekBar.current.style.backgroundColor = "#323232";
       };
       return () => audioRef.current.removeEventListener("ended", handleAudioEnd);
     }
@@ -180,7 +180,9 @@ const PlayerContextProvider = ({ children }) => {
     shuff,
     songData,
     albumData,
-    loop
+    loop,
+    isSearch: () => setSearch((prev) => !prev),
+    search
   };
 
   return <PlayerContext.Provider value={contextValue}>{children}</PlayerContext.Provider>;
