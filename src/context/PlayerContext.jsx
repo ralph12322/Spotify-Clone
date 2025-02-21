@@ -51,6 +51,8 @@ const PlayerContextProvider = (props) => {
   const [kalagayan, setKalagayan] = useState(false);
   const [shuffledSongs, setShuffledSongs] = useState([]);
   const [shuffle, setShuffle] = useState(false);
+  const [search, setSearch] = useState(false);
+  const [songName, setSongName] = useState("");
   const [time, setTime] = useState({
     currentTime: { second: 0, minute: 0 },
     totalTime: { second: 0, minute: 0 },
@@ -101,6 +103,10 @@ const PlayerContextProvider = (props) => {
 
   const loopSong = () => {
     setLoop((prev) => !prev);
+  };
+
+  const isSearch = () => {
+    setSearch((prev) => !prev);
   };
 
   useEffect(() => {
@@ -235,7 +241,11 @@ const PlayerContextProvider = (props) => {
     loopSong,
     loop,
     shuff,
-    shuffle
+    shuffle,
+    isSearch,
+    search,
+    songName,
+    setSongName
   };
 
   return <PlayerContext.Provider value={contextValue}>{props.children}</PlayerContext.Provider>;
