@@ -51,8 +51,8 @@ const PlayerContextProvider = ({ children }) => {
     const fetchData = async () => {
       try {
         const [songsRes, albumsRes] = await Promise.all([
-          axios.get(`${url}api/song/list`),
-          axios.get(`${url}api/album/list`),
+          axios.get(`${url}/api/song/list`),
+          axios.get(`${url}/api/album/list`),
         ]);
         setSongData(songsRes.data.songs);
         setAlbumData(albumsRes.data.albums);
