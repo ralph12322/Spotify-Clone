@@ -49,7 +49,7 @@ const DisplayAlbum = ({album}) => {
           <div onClick={() =>playWithId(item._id)} key={index} className='grid grid-cols-3 sm:grid-cols-5 gap-2 p-2 items-center text-[#a7a7a7] hover:bg-[#ffffff2b] cursor-pointer'>
             <div className='flex items-center'>
                <b className='pr-1.5 text-[#a7a7a7]'>{index + 1}</b>
-               <img className='h-15 w-10 ml-10 mr-5 hidden sm:block' src={item.image} alt='' />
+               <img className='h-14 w-10 ml-10 mr-5 hidden sm:block' src={item.image} alt='' />
             </div>
 
             <p className='text-white'>
