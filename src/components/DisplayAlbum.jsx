@@ -36,7 +36,7 @@ const DisplayAlbum = ({album}) => {
           </p>
         </div>
       </div>
-      <div className='grid sm:grid-cols-3 grid-cols-5 mt-10 mb-4 pl-2 text-[#a7a7a7]'>
+      <div className='w-full grid grid-cols-5 sm:grid-cols-3 mt-10 mb-4 pl-2 text-[#a7a7a7]'>
         <p><b className='p-1.5'>#</b></p>
         <p>Title</p>
         <p className='hidden sm:block'>Album</p>
@@ -46,7 +46,7 @@ const DisplayAlbum = ({album}) => {
       <hr/>
       {
         songData.filter((item) =>item.album === album.name ).map((item, index) => (
-          <div onClick={() =>playWithId(item._id)} key={index} className='grid sm:grid-cols-3 grid-cols-5 gap-2 p-2 items-center text-[#a7a7a7] hover:bg-[#ffffff2b] cursor-pointer'>
+          <div onClick={() =>playWithId(item._id)} key={index} className='grid grid-cols-5 sm:grid-cols-3 gap-2 p-2 items-center text-[#a7a7a7] hover:bg-[#ffffff2b] cursor-pointer'>
             <div className='flex items-center'>
                <b className='pr-1.5 text-[#a7a7a7]'>{index + 1}</b>
                <img className='w-10 ml-10 mr-5 hidden sm:block' src={item.image} alt='' />
