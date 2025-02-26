@@ -45,7 +45,7 @@ const Player = () => {
         <img className='w-4' src={assets.queue_icon} alt=''/>
         <img className='w-4' src={assets.speaker_icon} alt=''/>
         <img className='w-4' src={assets.volume_icon} alt=''/>
-        <div className="flex items-center mt-4">
+        <div className="flex items-center">
         <input
           ref={volumeBar}
           type="range"
