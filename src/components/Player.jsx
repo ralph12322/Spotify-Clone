@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { assets } from '../assets/assets'
 import { PlayerContext } from '../context/PlayerContext'
+import ExpandedPlayer from './ExpandedPlayer';
 
 const Player = () => {
 
@@ -57,7 +58,7 @@ const Player = () => {
         />
       </div>
         <img className='w-4' src={assets.mini_player_icon} alt=''/>
-        <img className='w-4' src={assets.zoom_icon} alt=''/>
+        <img onClick={<ExpandedPlayer/>} className='w-4' src={assets.zoom_icon} alt=''/>
       </div>
     </div>
   ) : null
