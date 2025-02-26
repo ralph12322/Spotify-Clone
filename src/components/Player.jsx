@@ -58,7 +58,7 @@ const Player = () => {
         />
       </div>
         <img className='w-4' src={assets.mini_player_icon} alt=''/>
-        <img onClick={<ExpandedPlayer/>} className='w-4' src={assets.zoom_icon} alt=''/>
+        <img onClick={()=>navigate(`/player`)} className='w-4' src={assets.zoom_icon} alt=''/>
       </div>
     </div>
   ) : null
