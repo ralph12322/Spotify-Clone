@@ -2,11 +2,12 @@ import React, { useContext } from 'react'
 import { assets } from '../assets/assets'
 import { PlayerContext } from '../context/PlayerContext'
 import ExpandedPlayer from './ExpandedPlayer';
+import { useNavigate } from 'react-router-dom';
 
 const Player = () => {
 
   const {mute, play, pause, track, seekBar, seekBg, playStatus,time, seekSong, loopSong, loop, next, previous, shuff, shuffle, volume, volumeBar, handleVolumeChange} = useContext(PlayerContext);
-
+  const navigate = useNavigate();
 
   return track ? (
     <div className='h-[10%] bg-black flex justify-between items-center text-white px-4'>
