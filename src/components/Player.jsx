@@ -53,7 +53,7 @@ const Player = () => {
           max="100"
           value={volume * 100}
           onChange={handleVolumeChange}
-          className="w-full cursor-pointer"
+          className="w-full cursor-pointer accent-green-500"
         />
       </div>
         <img className='w-4' src={assets.mini_player_icon} alt=''/>
