@@ -4,7 +4,7 @@ import { PlayerContext } from '../context/PlayerContext'
 
 const Player = () => {
 
-  const {play, pause, track, seekBar, seekBg, playStatus,time, seekSong, loopSong, loop, next, previous, shuff, shuffle} = useContext(PlayerContext);
+  const {play, pause, track, seekBar, seekBg, playStatus,time, seekSong, loopSong, loop, next, previous, shuff, shuffle, volume, volumeBar, handleVolumeChange} = useContext(PlayerContext);
 
 
   return track ? (
@@ -45,9 +45,17 @@ const Player = () => {
         <img className='w-4' src={assets.queue_icon} alt=''/>
         <img className='w-4' src={assets.speaker_icon} alt=''/>
         <img className='w-4' src={assets.volume_icon} alt=''/>
-        <div className='w-20 bg-slate-50 h-1 rounded'>
-
-        </div>
+        <div className="flex items-center mt-4">
+        <input
+          ref={volumeBar}
+          type="range"
+          min="0"
+          max="100"
+          value={volume * 100}
+          onChange={handleVolumeChange}
+          className="w-full cursor-pointer"
+        />
+      </div>
         <img className='w-4' src={assets.mini_player_icon} alt=''/>
         <img className='w-4' src={assets.zoom_icon} alt=''/>
       </div>

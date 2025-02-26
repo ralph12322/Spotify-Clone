@@ -147,6 +147,15 @@ const PlayerContextProvider = ({ children }) => {
     }
   }, [track, loop, shuffle]);
 
+  const volumeBar = useRef(null);
+  const [volume, setVolume] = useState(1); // Default volume (100%)
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume; // Set initial volume
+    }
+  }, [volume]); // Update whenever `volume` changes
+
   const next = async () => {
     setTrack(shuffle ? playlistRef.current.next() : songData[(songData.indexOf(track) + 1) % songData.length]);
     await play();
@@ -182,7 +191,14 @@ const PlayerContextProvider = ({ children }) => {
     albumData,
     loop,
     isSearch: () => setSearch((prev) => !prev),
-    search
+    search,
+    handleVolumeChange: (e) => {
+      const newVolume = e.target.value / 100; // Convert 0-100 range to 0-1
+      setVolume(newVolume);
+      if (audioRef.current) {
+        audioRef.current.volume = newVolume;
+      }
+    }
   };
 
   return <PlayerContext.Provider value={contextValue}>{children}</PlayerContext.Provider>;
