@@ -166,6 +166,10 @@ const PlayerContextProvider = ({ children }) => {
     await play();
   };
 
+  const mute = () => {
+    setVolume(0);
+  };
+
   const contextValue = {
     audioRef,
     seekBg,
@@ -200,7 +204,8 @@ const PlayerContextProvider = ({ children }) => {
       }
     },
     volume,
-    volumeBar
+    volumeBar,
+    mute
   };
 
   return <PlayerContext.Provider value={contextValue}>{children}</PlayerContext.Provider>;

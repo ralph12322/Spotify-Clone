@@ -4,7 +4,7 @@ import { PlayerContext } from '../context/PlayerContext'
 
 const Player = () => {
 
-  const {play, pause, track, seekBar, seekBg, playStatus,time, seekSong, loopSong, loop, next, previous, shuff, shuffle, volume, volumeBar, handleVolumeChange} = useContext(PlayerContext);
+  const {mute, play, pause, track, seekBar, seekBg, playStatus,time, seekSong, loopSong, loop, next, previous, shuff, shuffle, volume, volumeBar, handleVolumeChange} = useContext(PlayerContext);
 
 
   return track ? (
@@ -44,7 +44,7 @@ const Player = () => {
         <img className='w-4' src={assets.mic_icon} alt=''/>
         <img className='w-4' src={assets.queue_icon} alt=''/>
         <img className='w-4' src={assets.speaker_icon} alt=''/>
-        <img className='w-4' src={assets.volume_icon} alt=''/>
+        <img onClick={mute} className='w-4' src={assets.volume_icon} alt=''/>
         <div className="flex items-center">
         <input
           ref={volumeBar}
