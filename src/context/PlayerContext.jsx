@@ -198,7 +198,9 @@ const PlayerContextProvider = ({ children }) => {
       if (audioRef.current) {
         audioRef.current.volume = newVolume;
       }
-    }
+    },
+    volume,
+    volumeBar
   };
 
   return <PlayerContext.Provider value={contextValue}>{children}</PlayerContext.Provider>;
