@@ -1,5 +1,6 @@
 import React from 'react'
 import { PlayerContext } from '../context/PlayerContext'
+import Player from './Player'
 
 const ExpandedPlayer = () => {
 
@@ -7,6 +8,7 @@ const ExpandedPlayer = () => {
   return (
     <div>
       <img className='w-12' src={track.image} alt=''/>
+      <Player/>
     </div>
   )
 }
