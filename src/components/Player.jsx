@@ -59,15 +59,29 @@ const Player = () => {
       </div>
         <img className='w-4' src={assets.mini_player_icon} alt=''/>
         {
-        !mini ? <img onClick={()=> {
-          navigate(`/player`);
-          isMini
-        }} className='w-4' src={assets.zoom_icon} alt=''/> :
-        <img onClick={()=>{
-          navigate(-1);
-          isMini
-        }} className='w-4' src={assets.zoom_icon} alt=''/>
-        }
+  !mini ? (
+    <img
+      onClick={() => {
+        navigate(`/player`);
+        isMini();
+      }}
+      className="w-4"
+      src={assets.zoom_icon}
+      alt=""
+    />
+  ) : (
+    <img
+      onClick={() => {
+        navigate(-1);
+        isMini();
+      }}
+      className="w-4"
+      src={assets.zoom_icon}
+      alt=""
+    />
+  )
+}
+
 
       </div>
     </div>
