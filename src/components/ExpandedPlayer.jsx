@@ -7,9 +7,9 @@ const ExpandedPlayer = () => {
 
   const {track} = useContext(PlayerContext);
   return (
-    <div className='h-screen'>
+    <div className='h-[90%] overflow-auto'>
       <Navbar/>
-      <img className='w-[100%] h-[80%] rounded p-5' src={track.image} alt=''/>
+      <img className='w-full h-[60vh] object-contain rounded p-5' src={track.image} alt=''/>
       <Player/>
     </div>
   )
