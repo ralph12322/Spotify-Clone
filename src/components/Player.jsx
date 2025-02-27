@@ -59,7 +59,7 @@ const Player = () => {
       </div>
         <img className='w-4' src={assets.mini_player_icon} alt=''/>
         {
-        mini ? <img onClick={()=> {
+        !mini ? <img onClick={()=> {
           navigate(`/player`);
           isMini
         }} className='w-4' src={assets.zoom_icon} alt=''/> :
