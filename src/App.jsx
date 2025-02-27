@@ -6,7 +6,7 @@ import { PlayerContext } from './context/PlayerContext'
 
 const App = () => {
 
-  const { audioRef, track, songData } = useContext(PlayerContext)
+  const {mini, audioRef, track, songData } = useContext(PlayerContext)
 
   return (
     <div className='h-screen bg-black'>
@@ -17,7 +17,10 @@ const App = () => {
               <SideBar />
               <Display />
             </div>
-            <Player />
+            {
+              !mini ? <Player /> : null
+            }
+
           </>
           : null
       }
