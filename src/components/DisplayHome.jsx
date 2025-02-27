@@ -16,9 +16,9 @@ const DisplayHome = () => {
       {albumData.map((item, index)=>(<AlbumItem key={index} name={item.name} desc={item.desc} id={item._id} image={item.image}/>))} 
       </div>
     </div>
-    <div className='mb-4 grid grid-cols-6'>
+    <div className='mb-4'>
       <h1 className='my-5 font-bold text-2xl'>Today's Biggest Hits</h1>
-      <div className='flex overflow-auto'>
+      <div className='flex overflow-auto grid grid-cols-6'>
       {songData.map((item, index)=>(<SongItem key={index} name={item.name} desc={item.desc} id={item._id} image={item.image}/>))} 
       </div>
     </div>
