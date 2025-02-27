@@ -9,7 +9,7 @@ const ExpandedPlayer = () => {
   return (
     <div>
       <Navbar/>
-      <img className='w-[100%] h-[50%] rounded p-5' src={track.image} alt=''/>
+      <img className='w-[20%] h-[50%] rounded p-5' src={track.image} alt=''/>
       <Player/>
     </div>
   )
