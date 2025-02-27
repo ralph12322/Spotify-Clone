@@ -13,10 +13,18 @@ const App = () => {
       {
         songData.length !== 0
           ? <>
+          {
+            !mini ?
             <div className='h-[90%] flex'>
-              <SideBar />
-              <Display />
+            <SideBar />
+            <Display />
+            </div> :
+            <div className='h-[100%] flex'>
+            <SideBar />
+            <Display />
             </div>
+          }
+            
             {
               !mini ? <Player /> : null
             }
