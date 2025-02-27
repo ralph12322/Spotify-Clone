@@ -8,7 +8,7 @@ import ExpandedPlayer from './ExpandedPlayer'
 
 const Display = () => {
   
-  const{albumData, songData} = useContext(PlayerContext);
+  const{albumData, mini} = useContext(PlayerContext);
 
   const displayRef = useRef();
   const location = useLocation();
@@ -19,6 +19,9 @@ const Display = () => {
   useEffect(() => {
     if(isAlbum){
       displayRef.current.style.background = `linear-gradient(${bgColor}, #121212)`
+    }
+    else if(mini){
+      displayRef.current.style.background = `linear-gradient(white, #121212)`
     }
     else{
       displayRef.current.style.background = `#121212`
