@@ -8,7 +8,7 @@ const Player = () => {
   const {isMini, mini, mute, play, pause, track, seekBar, seekBg, playStatus,time, seekSong, loopSong, loop, next, previous, shuff, shuffle, volume, volumeBar, handleVolumeChange} = useContext(PlayerContext);
   const navigate = useNavigate();
 
-  return (track && mini) ? (
+  return (track && !mini) ? (
     <div className='h-[10%] bg-black flex justify-between items-center text-white px-4'>
       <div className='hidden lg:flex items-center gap-4'>
         <img className='w-12' src={track.image} alt=''/>
