@@ -21,7 +21,7 @@ const Display = () => {
       displayRef.current.style.background = `linear-gradient(${bgColor}, #121212)`
     }
     else if(mini){
-      displayRef.current.style.background = `linear-gradient(white, #121212)`
+      displayRef.current.style.background = `linear-gradient(#E6FBFA, #121212)`
     }
     else{
       displayRef.current.style.background = `#121212`
