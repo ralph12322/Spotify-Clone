@@ -64,7 +64,7 @@ const Player = () => {
         navigate(`/player`);
         isMini();
       }}
-      className="w-4"
+      className="w-4 cursor-pointer"
       src={assets.zoom_icon}
       alt=""
     />
@@ -74,7 +74,7 @@ const Player = () => {
         navigate(-1);
         isMini();
       }}
-      className="w-4"
+      className="w-4 cursor-pointer"
       src={assets.zoom_icon}
       alt=""
     />
