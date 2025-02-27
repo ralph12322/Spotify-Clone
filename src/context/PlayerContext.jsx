@@ -42,7 +42,7 @@ const PlayerContextProvider = ({ children }) => {
   const [shuffledSongs, setShuffledSongs] = useState([]);
   const [time, setTime] = useState({ currentTime: { second: 0, minute: 0 }, totalTime: { second: 0, minute: 0 } });
   const [search, setSearch] = useState(false);
-  cont [mini, setMini] = useState(false);
+  const [mini, setMini] = useState(false);
   const audioRef = useRef();
   const seekBg = useRef();
   const seekBar = useRef();
