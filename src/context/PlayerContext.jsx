@@ -68,11 +68,11 @@ const PlayerContextProvider = ({ children }) => {
     fetchData();
   }, []);
 
-  const playAlbum = () => {
+  const playAlbum = async () => {
     if (albumSongs instanceof Playlist && albumSongs.songData.length > 0) {
       setAlbumActive(true);
       setTrack(albumSongs.current());
-      play();
+      await play();
     } else {
       console.error("AlbumSongs is not a valid playlist:", albumSongs);
     }
@@ -93,11 +93,11 @@ const PlayerContextProvider = ({ children }) => {
     }
   };
   
-  const playWithId = (id) => {
+  const playWithId = async (id) => {
     const song = songData.find((item) => item._id === id);
     if (song) {
       setTrack(song);
-      play();
+      await play();
     };
   }; // <-- This was missing
   
