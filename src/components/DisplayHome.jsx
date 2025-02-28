@@ -8,12 +8,6 @@ const DisplayHome = () => {
 
   const {songData, albumData, setAlbumActive} = useContext(PlayerContext);
 
-  useEffect(() => {
-
-    setAlbumActive(false);
-
-  }, [])
-
   return(
     <>
     <Navbar/>

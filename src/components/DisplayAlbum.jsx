@@ -16,10 +16,8 @@ const DisplayAlbum = ({album}) => {
           setAlbumsData(item);
         }
       } )
-      setAlbumActive(true);
       const filteredSongs = songData.filter((item) => item.album === album.name);
       setAlbumSongs(filteredSongs.map(song => song.file));
-
     }, [])
 
   return albumData ? (
