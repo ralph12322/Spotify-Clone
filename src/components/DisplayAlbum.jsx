@@ -38,7 +38,7 @@ const DisplayAlbum = ({album}) => {
             about 2 hr 30 mins 
           </p>
         </div>
-        <div className='relative flex justify-end'>
+        <div className='relative flex'>
             <img className='absolute overflow-hidden w-[5rem] h-[5rem] bg-[hsl(0,0%,98.4%,0.2)] opacity-80 transition duration-300 ease-in-out hover:opacity-100 cursor-pointer' onClick={playAlbum} src={assets.playAlbum} alt="" />
           </div>
       </div>
