@@ -88,7 +88,7 @@ const PlayerContextProvider = ({ children }) => {
       setTrack(song);
       await play();
     };
-
+  }
   useEffect(() => {
     if (track && playStatus) {
       play();
@@ -235,4 +235,4 @@ const PlayerContextProvider = ({ children }) => {
   return <PlayerContext.Provider value={contextValue}>{children}</PlayerContext.Provider>;
 };
 
-export default PlayerContextProvider;
+export default PlayerContextProvider
