@@ -87,8 +87,7 @@ const PlayerContextProvider = ({ children }) => {
     }else if (song) {
       setTrack(song);
       await play();
-    }else 
-  };
+    };
 
   useEffect(() => {
     if (track && playStatus) {
