@@ -98,7 +98,7 @@ const PlayerContextProvider = ({ children }) => {
     }
   };
   
-  const playWithId = async (id) => {
+  const playWithId = (id) => {
     const song = songData.find((item) => item._id === id);
     if (song) {
       setTrack(song);
