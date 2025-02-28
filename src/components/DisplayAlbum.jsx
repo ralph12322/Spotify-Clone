@@ -38,12 +38,12 @@ const DisplayAlbum = ({album}) => {
             about 2 hr 30 mins 
           </p>
         </div>
-        <div className='pl-[45rem] flex'>
+        <div className='pl-[40rem] flex'>
             <img className='absolute overflow-hidden w-[5rem] h-[5rem] bg-[hsl(0,0%,98.4%,0.2)] opacity-80 transition duration-300 ease-in-out hover:opacity-100 cursor-pointer' onClick={playAlbum} src={assets.playAlbum} alt="" />
           </div>
       </div>
       
-      <div className='w-full grid grid-cols-3 sm:grid-cols-5 mt-10 mb-4 pl-2 text-[#a7a7a7]'>
+      <div className='w-full grid grid-cols-3 sm:grid-cols-5 mt-10 mb-4 pl-2 pt-4 text-[#a7a7a7]'>
         <p><b className='p-1.5'>#</b></p>
         <p>Title</p>
         <p className='hidden sm:block'>Album</p>
