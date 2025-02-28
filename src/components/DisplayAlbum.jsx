@@ -8,7 +8,7 @@ const DisplayAlbum = ({album}) => {
 
     const {id} = useParams();
     const [albumsData, setAlbumsData] = useState("");
-    const { playWithId, albumData, songData, albumSongs, setAlbumSongs, albumActive, setAlbumActive } = useContext(PlayerContext);
+    const { playWithId, albumData, songData, albumSongs, setAlbumSongs, albumActive, setAlbumActive, playAlbum } = useContext(PlayerContext);
 
     useEffect(() => {
       albumData.map((item, index) =>{
@@ -39,6 +39,9 @@ const DisplayAlbum = ({album}) => {
             about 2 hr 30 mins 
           </p>
         </div>
+      </div>
+      <div onClick={playAlbum}>
+        <p>PLAY</p>
       </div>
       <div className='w-full grid grid-cols-3 sm:grid-cols-5 mt-10 mb-4 pl-2 text-[#a7a7a7]'>
         <p><b className='p-1.5'>#</b></p>

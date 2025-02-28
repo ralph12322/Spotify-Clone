@@ -254,7 +254,8 @@ const PlayerContextProvider = ({ children }) => {
     albumSongs,
     setAlbumSongs,
     albumActive,
-    setAlbumActive
+    setAlbumActive,
+    playAlbum
   };
 
   return <PlayerContext.Provider value={contextValue}>{children}</PlayerContext.Provider>;
