@@ -25,7 +25,6 @@ const DisplayAlbum = ({album}) => {
   return albumData ? (
     <>
       <Navbar/>
-      <p>{albumActive ? "pass" : "fail"}</p>
       <div className='mt-10 flex gap-8 flex-col md:flex-row md:items-end'>
         <img className='w-48 rounded' src = {albumsData.image} alt=''/>
         <div className='flex flex-col'>
