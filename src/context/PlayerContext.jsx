@@ -43,7 +43,7 @@ const PlayerContextProvider = ({ children }) => {
   const [time, setTime] = useState({ currentTime: { second: 0, minute: 0 }, totalTime: { second: 0, minute: 0 } });
   const [search, setSearch] = useState(false);
   const [mini, setMini] = useState(false);
-  const [albumSongs, setAlbumSongs] = useState([]);
+  const [albumSongs, setAlbumSongs] = useState(new Playlist([]));
   const [albumActive, setAlbumActive] = useState(false);
   const audioRef = useRef();
   const seekBg = useRef();
@@ -67,6 +67,14 @@ const PlayerContextProvider = ({ children }) => {
     };
     fetchData();
   }, []);
+
+  const playAlbum = async () => {
+    if (albumSongs.length > 0) {
+      setTrack(albumSongs[0]); // Start playing the first song
+      setAlbumActive(true); // Ensure album mode is active
+      await play();
+    }
+  };  
 
   const play = async () => {
     if (audioRef.current) {
@@ -116,27 +124,33 @@ const PlayerContextProvider = ({ children }) => {
 
   const handleAudioEnd = async () => {
     setPlayStatus(false);
-
+  
     if (loop) {
       await play();
       return;
     }
-
+  
+    if (albumActive && albumSongs.length > 0) {
+      const currentIndex = albumSongs.findIndex((item) => item._id === track._id);
+      if (currentIndex < albumSongs.length - 1) {
+        setTrack(albumSongs[currentIndex + 1]); // Move to next track in album
+        await play();
+        return;
+      }
+    }
+  
     if (shuffle && shuffledSongs.length > 0) {
       const currentIndex = shuffledSongs.findIndex((item) => item._id === track._id);
       setTrack(shuffledSongs[(currentIndex + 1) % shuffledSongs.length]);
-    }    
-
-    if (albumActive) {
-      const currentIndex = albumSongs.findIndex((item) => item._id === track._id);
-      setTrack(albumSongs[(currentIndex + 1) % albumSongs.length]); 
-    } else {
-      const currentIndex = songData.findIndex((item) => item._id === track._id);
-      setTrack(songData[(currentIndex + 1) % songData.length]);
+      await play();
+      return;
     }
-    
+  
+    // Default to the next track in the main song list
+    const currentIndex = songData.findIndex((item) => item._id === track._id);
+    setTrack(songData[(currentIndex + 1) % songData.length]);
     await play();
-  };
+  };  
 
   useEffect(() => {
     if (audioRef.current) {
