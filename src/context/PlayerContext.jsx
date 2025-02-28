@@ -81,6 +81,7 @@ const PlayerContextProvider = ({ children }) => {
   const playWithId = async (id) => {
     const song = songData.find((item) => item._id === id);
     const albumplay = albumSongs.find((item) => item._id === id);
+    console.log(albumplay)
     if(song && albumActive){
       setTrack(albumplay);
       await play();
