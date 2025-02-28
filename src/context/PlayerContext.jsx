@@ -102,7 +102,7 @@ const PlayerContextProvider = ({ children }) => {
     const song = songData.find((item) => item._id === id);
     if (song) {
       setTrack(song);
-      await audioRef.current.play();
+      play();
     };
   }; // <-- This was missing
   
