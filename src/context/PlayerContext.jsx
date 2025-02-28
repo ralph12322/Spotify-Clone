@@ -72,18 +72,11 @@ const PlayerContextProvider = ({ children }) => {
     if (albumSongs instanceof Playlist && albumSongs.songData.length > 0) {
       setAlbumActive(true);
       setTrack(albumSongs.current());
+      play();
     } else {
       console.error("AlbumSongs is not a valid playlist:", albumSongs);
     }
   };  
-  
-  useEffect(() => {
-    if (albumActive && track) {
-      play();
-    }else if (track){
-      play();
-    }
-  }, [track]); // Auto-play when track changes
   
 
   const play = async () => {
@@ -104,6 +97,7 @@ const PlayerContextProvider = ({ children }) => {
     const song = songData.find((item) => item._id === id);
     if (song) {
       setTrack(song);
+      play();
     };
   }; // <-- This was missing
   
