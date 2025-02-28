@@ -68,9 +68,9 @@ const PlayerContextProvider = ({ children }) => {
     fetchData();
   }, []);
 
-  const play = () => {
+  const play = async () => {
     if (audioRef.current) {
-      audioRef.current.play();
+      await audioRef.current.play();
       setPlayStatus(true);
     }
   };
@@ -141,7 +141,6 @@ const PlayerContextProvider = ({ children }) => {
       setTrack(songData[(currentIndex + 1) % songData.length]);
     }
     
-
     await play();
   };
 
