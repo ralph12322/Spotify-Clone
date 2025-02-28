@@ -78,7 +78,7 @@ const PlayerContextProvider = ({ children }) => {
   };  
   
   useEffect(() => {
-    if (albumActive && track) {
+    if (albumActive || track) {
       play();
     }
   }, [track]); // Auto-play when track changes
@@ -102,7 +102,6 @@ const PlayerContextProvider = ({ children }) => {
     const song = songData.find((item) => item._id === id);
     if (song) {
       setTrack(song);
-      play();
     };
   }; // <-- This was missing
   
