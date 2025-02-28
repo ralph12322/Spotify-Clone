@@ -75,21 +75,23 @@ const PlayerContextProvider = ({ children }) => {
     }
   };
   
-
   const pause = () => {
-    audioRef.current.pause();
-    setPlayStatus(false);
+    if (audioRef.current) {
+      audioRef.current.pause();
+      setPlayStatus(false);
+    }
   };
-
+  
   const playWithId = async (id) => {
     const song = songData.find((item) => item._id === id);
     if (song) {
       setTrack(song);
       await play();
     };
-  }
+  }; // <-- This was missing
+  
   useEffect(() => {
-    if (track && playStatus) {
+    if (track) {
       play();
     }
   }, [track]);
@@ -120,17 +122,17 @@ const PlayerContextProvider = ({ children }) => {
       return;
     }
 
-    if (shuffle) {
+    if (shuffle && shuffledSongs.length > 0) {
       const currentIndex = shuffledSongs.findIndex((item) => item._id === track._id);
       setTrack(shuffledSongs[(currentIndex + 1) % shuffledSongs.length]);
-    }
+    }    
 
     if (albumActive) {
       const currentIndex = albumSongs.findIndex((item) => item._id === track._id);
-      setTrack(albumSongs[(currentIndex + 1)]); 
+      setTrack(albumSongs[(currentIndex + 1) % albumSongs.length]); 
     } else {
       const currentIndex = songData.findIndex((item) => item._id === track._id);
-      setTrack(songData[(currentIndex + 1)]);
+      setTrack(songData[(currentIndex + 1) % songData.length]);
     }
     
     await play();
@@ -172,10 +174,10 @@ const PlayerContextProvider = ({ children }) => {
     
     if (albumActive) {
       const currentIndex = albumSongs.findIndex((item) => item._id === track._id);
-      setTrack(albumSongs[(currentIndex + 1)]);
-    }else{
+      setTrack(albumSongs[(currentIndex + 1) % albumSongs.length]);
+    } else {
       setTrack(shuffle ? playlistRef.current.next() : songData[(songData.indexOf(track) + 1) % songData.length]);
-    }
+    }    
 
     await play();
   };
@@ -184,15 +186,18 @@ const PlayerContextProvider = ({ children }) => {
     if (albumActive) {
       const currentIndex = albumSongs.findIndex((item) => item._id === track._id);
       setTrack(albumSongs[(currentIndex - 1)]);
-    }else{
+    } else {
       setTrack(shuffle ? playlistRef.current.previous() : songData[(songData.indexOf(track) - 1 + songData.length) % songData.length]);
     }
     await play();
-  };
+  };  
 
   const mute = () => {
     setVolume(0);
-  };
+    if (audioRef.current) {
+      audioRef.current.volume = 0;
+    }
+  };  
 
   const contextValue = {
     audioRef,
