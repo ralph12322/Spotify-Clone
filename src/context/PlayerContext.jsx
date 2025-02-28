@@ -69,9 +69,12 @@ const PlayerContextProvider = ({ children }) => {
   }, []);
 
   const play = () => {
-    audioRef.current.play();
-    setPlayStatus(true);
+    if (audioRef.current) {
+      audioRef.current.play();
+      setPlayStatus(true);
+    }
   };
+  
 
   const pause = () => {
     audioRef.current.pause();
@@ -97,13 +100,16 @@ const PlayerContextProvider = ({ children }) => {
   }, [track]);
 
   const shuff = () => {
-    setShuffle((prev) => !prev);
-    if (shuffle) {
-      setShuffledSongs([]);
-    } else {
-      setShuffledSongs(playlistRef.current.shuffle());
-    }
+    setShuffle((prev) => {
+      if (!prev) {
+        setShuffledSongs(playlistRef.current.shuffle());
+      } else {
+        setShuffledSongs([]); // Reset shuffled list
+      }
+      return !prev;
+    });
   };
+  
 
   useEffect(() => {
     if (shuffledSongs.length > 0) {
@@ -129,8 +135,12 @@ const PlayerContextProvider = ({ children }) => {
 
     if (albumActive) {
       const currentIndex = albumSongs.findIndex((item) => item._id === track._id);
-      setTrack(albumSongs[(currentIndex + 1)]);
+      setTrack(albumSongs[(currentIndex + 1) % albumSongs.length]); 
+    } else {
+      const currentIndex = songData.findIndex((item) => item._id === track._id);
+      setTrack(songData[(currentIndex + 1) % songData.length]);
     }
+    
 
     await play();
   };
