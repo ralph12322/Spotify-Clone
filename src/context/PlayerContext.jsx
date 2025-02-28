@@ -132,10 +132,10 @@ const PlayerContextProvider = ({ children }) => {
 
     if (albumActive) {
       const currentIndex = albumSongs.findIndex((item) => item._id === track._id);
-      setTrack(albumSongs[(currentIndex + 1) % albumSongs.length]); 
+      setTrack(albumSongs[(currentIndex + 1)]); 
     } else {
       const currentIndex = songData.findIndex((item) => item._id === track._id);
-      setTrack(songData[(currentIndex + 1) % songData.length]);
+      setTrack(songData[(currentIndex + 1)]);
     }
     
     await play();
