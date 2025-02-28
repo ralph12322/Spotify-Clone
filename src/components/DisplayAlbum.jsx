@@ -39,8 +39,8 @@ const DisplayAlbum = ({album}) => {
           </p>
         </div>
       </div>
-      <div onClick={playAlbum}>
-        <img className='w-30 h-30' src={assets.playAlbum} alt="" />
+      <div className='flex' onClick={playAlbum}>
+        <img className='w-[5rem] h-[5rem]' src={assets.playAlbum} alt="" />
       </div>
       <div className='w-full grid grid-cols-3 sm:grid-cols-5 mt-10 mb-4 pl-2 text-[#a7a7a7]'>
         <p><b className='p-1.5'>#</b></p>
