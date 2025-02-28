@@ -34,7 +34,7 @@ const DisplayAlbum = ({album}) => {
             <img className='inline-block' src={assets.spotify_logo} alt=''/>
             <b> Spotnify </b>
             • 1,323,320 likes
-            • <b> {albumSongs.length} Songs </b>
+            • <b> {`${albumSongs.length} Songs`} </b>
             about 2 hr 30 mins 
           </p>
         </div>
