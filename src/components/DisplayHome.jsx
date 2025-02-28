@@ -6,7 +6,7 @@ import { PlayerContext } from '../context/PlayerContext'
 
 const DisplayHome = () => {
 
-  const {songData, albumData} = useContext(PlayerContext);
+  const {songData, albumData, setAlbumActive} = useContext(PlayerContext);
 
   useEffect(() => {
 
