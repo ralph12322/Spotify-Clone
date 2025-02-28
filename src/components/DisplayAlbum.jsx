@@ -24,6 +24,9 @@ const DisplayAlbum = ({album}) => {
 
   return albumData ? (
     <>
+      <p>{albumSongs[0]}</p>
+      <p>{albumSongs[albumSongs.length-1]}</p>
+
       <Navbar/>
       <div className='mt-10 flex gap-8 flex-col md:flex-row md:items-end'>
         <img className='w-48 rounded' src = {albumsData.image} alt=''/>
