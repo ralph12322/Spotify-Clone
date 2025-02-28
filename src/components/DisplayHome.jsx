@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import Navbar from './Navbar'
 import AlbumItem from './AlbumItem'
 import SongItem from './SongItem'
