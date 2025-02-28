@@ -39,7 +39,7 @@ const DisplayAlbum = ({album}) => {
           </p>
         </div>
       </div>
-      <div className='pt-[20rem] flex'>
+      <div className='flex'>
         <img className='absolute overflow-hidden w-[5rem] h-[5rem] bg-[hsl(0,0%,98.4%,0.2)] opacity-80 transition duration-300 ease-in-out hover:opacity-100 cursor-pointer' onClick={playAlbum} src={assets.playAlbum} alt="" />
       </div>
       <div className='w-full grid grid-cols-3 sm:grid-cols-5 mt-10 mb-4 pl-2 text-[#a7a7a7]'>
