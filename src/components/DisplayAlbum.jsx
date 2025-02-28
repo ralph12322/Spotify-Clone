@@ -8,7 +8,7 @@ const DisplayAlbum = ({album}) => {
 
     const {id} = useParams();
     const [albumsData, setAlbumsData] = useState("");
-    const { playWithId, albumData, songData } = useContext(PlayerContext);
+    const { playWithId, albumData, songData, albumSongs, setAlbumSongs, albumActive, setAlbumActive } = useContext(PlayerContext);
 
     useEffect(() => {
       albumData.map((item, index) =>{
@@ -16,6 +16,12 @@ const DisplayAlbum = ({album}) => {
           setAlbumsData(item);
         }
       } )
+      setAlbumActive(true);
+      songData.filter((item) =>item.album === album.name ).map((item, index)=>{
+        setAlbumSongs(item)
+
+      })
+      console.log(albumSongs);
     }, [])
 
   return albumData ? (

@@ -43,6 +43,8 @@ const PlayerContextProvider = ({ children }) => {
   const [time, setTime] = useState({ currentTime: { second: 0, minute: 0 }, totalTime: { second: 0, minute: 0 } });
   const [search, setSearch] = useState(false);
   const [mini, setMini] = useState(false);
+  const [albumSongs, setAlbumSongs] = useState([]);
+  const [albumActive, setAlbumActive] = useState(false);
   const audioRef = useRef();
   const seekBg = useRef();
   const seekBar = useRef();
@@ -102,7 +104,6 @@ const PlayerContextProvider = ({ children }) => {
   useEffect(() => {
     if (shuffledSongs.length > 0) {
       setTrack(shuffledSongs[0]);
-      play();
     }
   }, [shuffledSongs]);
 
@@ -208,7 +209,11 @@ const PlayerContextProvider = ({ children }) => {
     volumeBar,
     mute,
     mini,
-    isMini: () => setMini((prev) => !prev)
+    isMini: () => setMini((prev) => !prev),
+    albumSongs,
+    setAlbumSongs,
+    albumActive,
+    setAlbumActive
   };
 
   return <PlayerContext.Provider value={contextValue}>{children}</PlayerContext.Provider>;
