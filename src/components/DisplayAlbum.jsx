@@ -24,7 +24,7 @@ const DisplayAlbum = ({album}) => {
   return albumData ? (
     <>
       <Navbar/>
-      <div className='mt-10 pb-10 flex gap-8 flex-col md:flex-row md:items-end'>
+      <div className='mt-10 flex gap-8 flex-col md:flex-row md:items-end'>
         <img className='w-48 rounded' src = {albumsData.image} alt=''/>
         <div className='flex flex-col'>
           <p>Playlist</p>
@@ -38,11 +38,10 @@ const DisplayAlbum = ({album}) => {
             about 2 hr 30 mins 
           </p>
         </div>
-        <div className='relative flex'>
-            <img className='absolute overflow-hidden w-[5rem] h-[5rem] bg-[hsl(0,0%,98.4%,0.2)] opacity-80 transition duration-300 ease-in-out hover:opacity-100 cursor-pointer' onClick={playAlbum} src={assets.playAlbum} alt="" />
-          </div>
       </div>
-      
+      <div className='pt-[20rem] flex'>
+        <img className='absolute overflow-hidden w-[5rem] h-[5rem] bg-[hsl(0,0%,98.4%,0.2)] opacity-80 transition duration-300 ease-in-out hover:opacity-100 cursor-pointer' onClick={playAlbum} src={assets.playAlbum} alt="" />
+      </div>
       <div className='w-full grid grid-cols-3 sm:grid-cols-5 mt-10 mb-4 pl-2 text-[#a7a7a7]'>
         <p><b className='p-1.5'>#</b></p>
         <p>Title</p>
