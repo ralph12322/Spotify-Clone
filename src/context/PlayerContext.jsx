@@ -80,10 +80,14 @@ const PlayerContextProvider = ({ children }) => {
 
   const playWithId = async (id) => {
     const song = songData.find((item) => item._id === id);
-    if (song) {
+    const albumplay = albumSongs.find((item) => item._id === id);
+    if(song && albumActive){
+      setTrack(albumplay);
+      await play();
+    }else if (song) {
       setTrack(song);
       await play();
-    }
+    }else 
   };
 
   useEffect(() => {
@@ -123,6 +127,11 @@ const PlayerContextProvider = ({ children }) => {
       setTrack(songData[(currentIndex + 1) % songData.length]);
     }
 
+    if (albumActive) {
+      const currentIndex = albumSongs.findIndex((item) => item._id === track._id);
+      setTrack(albumSongs[(currentIndex + 1)]);
+    }
+
     await play();
   };
 
@@ -160,11 +169,19 @@ const PlayerContextProvider = ({ children }) => {
 
   const next = async () => {
     setTrack(shuffle ? playlistRef.current.next() : songData[(songData.indexOf(track) + 1) % songData.length]);
+    if (albumActive) {
+      const currentIndex = albumSongs.findIndex((item) => item._id === track._id);
+      setTrack(albumSongs[(currentIndex + 1)]);
+    }
     await play();
   };
 
   const previous = async () => {
     setTrack(shuffle ? playlistRef.current.previous() : songData[(songData.indexOf(track) - 1 + songData.length) % songData.length]);
+    if (albumActive) {
+      const currentIndex = albumSongs.findIndex((item) => item._id === track._id);
+      setTrack(albumSongs[(currentIndex - 1)]);
+    }
     await play();
   };
 
