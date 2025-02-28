@@ -115,9 +115,12 @@ const PlayerContextProvider = ({ children }) => {
       return;
     }
 
+
+
     if (shuffle) {
       const currentIndex = shuffledSongs.findIndex((item) => item._id === track._id);
       setTrack(shuffledSongs[(currentIndex + 1) % shuffledSongs.length]);
+      console.log(shuffledSongs)
     } else {
       const currentIndex = songData.findIndex((item) => item._id === track._id);
       setTrack(songData[(currentIndex + 1) % songData.length]);
