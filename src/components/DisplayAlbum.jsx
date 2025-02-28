@@ -3,6 +3,7 @@ import Navbar from './Navbar'
 import { useParams } from 'react-router-dom'
 import { assets } from '../assets/assets';
 import { PlayerContext } from "../context/PlayerContext";
+import { Playlist } from '../context/PlayerContext';
 
 const DisplayAlbum = ({album}) => {
 

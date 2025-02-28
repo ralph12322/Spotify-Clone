@@ -4,7 +4,7 @@ import { url } from "../config/config";
 
 export const PlayerContext = createContext();
 
-class Playlist {
+export class Playlist {
   constructor(songData) {
     this.originalOrder = [...songData];
     this.songData = [...songData];
