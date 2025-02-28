@@ -69,11 +69,13 @@ const PlayerContextProvider = ({ children }) => {
   }, []);
 
   const playAlbum = () => {
-    if (albumSongs.songData.length > 0) {
+    if (albumSongs instanceof Playlist && albumSongs.songData.length > 0) {
       setAlbumActive(true);
-      setTrack(albumSongs.current());  // Use Playlist class to get the first song
+      setTrack(albumSongs.current());
+    } else {
+      console.error("AlbumSongs is not a valid playlist:", albumSongs);
     }
-  };
+  };  
   
   useEffect(() => {
     if (albumActive && track) {
