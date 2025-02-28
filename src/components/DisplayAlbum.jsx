@@ -40,7 +40,7 @@ const DisplayAlbum = ({album}) => {
         </div>
       </div>
       <div onClick={playAlbum}>
-        <p className='cursor-pointer'>PLAY</p>
+        <img src={assets.playAlbum} alt="" />
       </div>
       <div className='w-full grid grid-cols-3 sm:grid-cols-5 mt-10 mb-4 pl-2 text-[#a7a7a7]'>
         <p><b className='p-1.5'>#</b></p>

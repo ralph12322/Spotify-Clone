@@ -52,6 +52,7 @@ import img16 from './img16.jpg'
 import song1 from  './song1.mp3'
 import song2 from  './song2.mp3'
 import song3 from  './song3.mp3'
+import playAlbum from './playAlbum.png'
 
 export const assets = {
     bell_icon,
@@ -88,7 +89,8 @@ export const assets = {
     song_icon,
     album_icon,
     upload_song,
-    shuffleOn
+    shuffleOn,
+    playAlbum
 }
 
 export const albumsData = [
