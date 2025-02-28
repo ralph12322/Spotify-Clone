@@ -18,7 +18,7 @@ const DisplayAlbum = ({album}) => {
       } )
       setAlbumActive(true);
       const filteredSongs = songData.filter((item) => item.album === album.name);
-      setAlbumSongs(filteredSongs);
+      setAlbumSongs(filteredSongs.map(song => song.file));
 
       console.log(filteredSongs);
     }, [])
@@ -36,7 +36,7 @@ const DisplayAlbum = ({album}) => {
             <img className='inline-block' src={assets.spotify_logo} alt=''/>
             <b> Spotnify </b>
             • 1,323,320 likes
-            • <b> {albumSongs.length} </b>
+            • <b> {albumSongs.length} Songs </b>
             about 2 hr 30 mins 
           </p>
         </div>
