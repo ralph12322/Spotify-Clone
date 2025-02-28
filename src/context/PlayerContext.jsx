@@ -59,7 +59,6 @@ const PlayerContextProvider = ({ children }) => {
         ]);
         setSongData(songsRes.data.songs);
         setAlbumData(albumsRes.data.albums);
-        setTrack(songsRes.data.songs[0]);
         playlistRef.current = new Playlist(songsRes.data.songs);
       } catch (error) {
         console.error("Error fetching data", error);
@@ -68,15 +67,22 @@ const PlayerContextProvider = ({ children }) => {
     fetchData();
   }, []);
 
-  const playAlbum = async () => {
+  const playAlbum = () => {
     if (albumSongs instanceof Playlist && albumSongs.songData.length > 0) {
       setAlbumActive(true);
       setTrack(albumSongs.current());
-      await play();
     } else {
       console.error("AlbumSongs is not a valid playlist:", albumSongs);
     }
   };  
+  
+  useEffect(() => {
+    if (albumActive && track) {
+      play();
+    }else if (track){
+      play();
+    }
+  }, [track]); // Auto-play when track changes
   
 
   const play = async () => {
@@ -93,11 +99,10 @@ const PlayerContextProvider = ({ children }) => {
     }
   };
   
-  const playWithId = async (id) => {
+  const playWithId = (id) => {
     const song = songData.find((item) => item._id === id);
     if (song) {
       setTrack(song);
-      await play();
     };
   }; // <-- This was missing
   
