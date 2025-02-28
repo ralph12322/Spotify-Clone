@@ -68,13 +68,19 @@ const PlayerContextProvider = ({ children }) => {
     fetchData();
   }, []);
 
-  const playAlbum = async () => {
-    if (albumSongs.length > 0) {
-      setTrack(albumSongs[0]); // Start playing the first song
-      setAlbumActive(true); // Ensure album mode is active
-      await play();
+  const playAlbum = () => {
+    if (albumSongs.songData.length > 0) {
+      setAlbumActive(true);
+      setTrack(albumSongs.current());  // Use Playlist class to get the first song
     }
-  };  
+  };
+  
+  useEffect(() => {
+    if (albumActive && track) {
+      play();
+    }
+  }, [track]); // Auto-play when track changes
+  
 
   const play = async () => {
     if (audioRef.current) {
@@ -124,14 +130,11 @@ const PlayerContextProvider = ({ children }) => {
       return;
     }
   
-    if (albumActive && albumSongs.length > 0) {
-      const currentIndex = albumSongs.findIndex((item) => item._id === track._id);
-      if (currentIndex < albumSongs.length - 1) {
-        setTrack(albumSongs[currentIndex + 1]); // Move to next track in album
-        await play();
-        return;
-      }
-    }
+    if (albumActive) {
+      setTrack(albumSongs.next());  // Move to next track in album
+      await play();
+      return;
+    }    
   
     if (shuffle && shuffledSongs.length > 0) {
       const currentIndex = shuffledSongs.findIndex((item) => item._id === track._id);
@@ -179,21 +182,17 @@ const PlayerContextProvider = ({ children }) => {
   }, [volume]); // Update whenever `volume` changes
 
   const next = async () => {
-    
     if (albumActive) {
-      const currentIndex = albumSongs.findIndex((item) => item._id === track._id);
-      setTrack(albumSongs[(currentIndex + 1) % albumSongs.length]);
+      setTrack(albumSongs.next());
     } else {
       setTrack(shuffle ? playlistRef.current.next() : songData[(songData.indexOf(track) + 1) % songData.length]);
-    }    
-
+    }
     await play();
-  };
+  };  
 
   const previous = async () => {
     if (albumActive) {
-      const currentIndex = albumSongs.findIndex((item) => item._id === track._id);
-      setTrack(albumSongs[(currentIndex - 1)]);
+      setTrack(albumSongs.previous());
     } else {
       setTrack(shuffle ? playlistRef.current.previous() : songData[(songData.indexOf(track) - 1 + songData.length) % songData.length]);
     }
