@@ -7,6 +7,13 @@ import { PlayerContext } from '../context/PlayerContext'
 const DisplayHome = () => {
 
   const {songData, albumData} = useContext(PlayerContext);
+
+  useEffect(() => {
+
+    setAlbumActive(false);
+
+  }, [])
+
   return(
     <>
     <Navbar/>
