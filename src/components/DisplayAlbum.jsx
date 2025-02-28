@@ -20,7 +20,7 @@ const DisplayAlbum = ({album}) => {
       const filteredSongs = songData.filter((item) => item.album === album.name);
       setAlbumSongs(filteredSongs.map(song => song.file));
 
-      console.log(filteredSongs);
+      console.log(albumSongs);
     }, [])
 
   return albumData ? (
