@@ -98,12 +98,6 @@ const PlayerContextProvider = ({ children }) => {
     };
   }; // <-- This was missing
   
-  useEffect(() => {
-    if (track) {
-      play();
-    }
-  }, [track]);
-
   const shuff = () => {
     setShuffle((prev) => {
       if (!prev) {
