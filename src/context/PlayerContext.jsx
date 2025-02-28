@@ -178,19 +178,23 @@ const PlayerContextProvider = ({ children }) => {
   }, [volume]); // Update whenever `volume` changes
 
   const next = async () => {
-    setTrack(shuffle ? playlistRef.current.next() : songData[(songData.indexOf(track) + 1) % songData.length]);
+    
     if (albumActive) {
       const currentIndex = albumSongs.findIndex((item) => item._id === track._id);
       setTrack(albumSongs[(currentIndex + 1)]);
+    }else{
+      setTrack(shuffle ? playlistRef.current.next() : songData[(songData.indexOf(track) + 1) % songData.length]);
     }
+
     await play();
   };
 
   const previous = async () => {
-    setTrack(shuffle ? playlistRef.current.previous() : songData[(songData.indexOf(track) - 1 + songData.length) % songData.length]);
     if (albumActive) {
       const currentIndex = albumSongs.findIndex((item) => item._id === track._id);
       setTrack(albumSongs[(currentIndex - 1)]);
+    }else{
+      setTrack(shuffle ? playlistRef.current.previous() : songData[(songData.indexOf(track) - 1 + songData.length) % songData.length]);
     }
     await play();
   };
