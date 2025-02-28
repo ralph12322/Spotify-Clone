@@ -17,11 +17,10 @@ const DisplayAlbum = ({album}) => {
         }
       } )
       setAlbumActive(true);
-      songData.filter((item) =>item.album === album.name ).map((item, index)=>{
-        setAlbumSongs(item)
+      const filteredSongs = songData.filter((item) => item.album === album.name);
+      setAlbumSongs(filteredSongs);
 
-      })
-      console.log(albumSongs);
+      console.log(literedSongs);
     }, [])
 
   return albumData ? (
