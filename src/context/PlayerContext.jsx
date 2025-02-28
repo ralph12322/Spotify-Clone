@@ -78,7 +78,9 @@ const PlayerContextProvider = ({ children }) => {
   };  
   
   useEffect(() => {
-    if (albumActive || track) {
+    if (albumActive && track) {
+      play();
+    }else if (track){
       play();
     }
   }, [track]); // Auto-play when track changes
