@@ -9,7 +9,7 @@ const DisplayAlbum = ({album}) => {
 
     const {id} = useParams();
     const [albumsData, setAlbumsData] = useState("");
-    const { playWithId, albumData, songData, albumSongs, setAlbumSongs, albumActive, setAlbumActive, playAlbum } = useContext(PlayerContext);
+    const { playWithId, albumData, songData, albumSongs, setAlbumSongs, playAlbum, shuffleAlbum } = useContext(PlayerContext);
 
     useEffect(() => {
       albumData.map((item, index) =>{
@@ -39,8 +39,9 @@ const DisplayAlbum = ({album}) => {
           </p>
         </div>
       </div>
-      <div className='flex'>
+      <div className='flex g-2'>
         <img className='overflow-hidden w-[5rem] h-[5rem] bg-[hsl(0,0%,98.4%,0.2)] opacity-80 transition duration-300 ease-in-out hover:opacity-100 cursor-pointer' onClick={playAlbum} src={assets.playAlbum} alt="" />
+        <a className='overflow-hidden w-[5rem] h-[5rem] bg-[hsl(0,0%,98.4%,0.2)] opacity-80 transition duration-300 ease-in-out hover:opacity-100 cursor-pointer' onClick={shuffleAlbum} href="https://www.flaticon.com/free-icons/shuffle" title="shuffle icons">Shuffle icons created by Yogi Aprelliyanto - Flaticon</a>
       </div>
       <div className='w-full grid grid-cols-3 sm:grid-cols-5 mt-10 mb-4 pl-2 text-[#a7a7a7]'>
         <p><b className='p-1.5'>#</b></p>

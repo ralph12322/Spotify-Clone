@@ -70,11 +70,20 @@ const PlayerContextProvider = ({ children }) => {
   const playAlbum = () => {
     if (albumSongs instanceof Playlist && albumSongs.songData.length > 0) {
       setAlbumActive(true);
-      setTrack(albumSongs.current());
+      setTrack(albumSongs.shuffle());
     } else {
       console.error("AlbumSongs is not a valid playlist:", albumSongs);
     }
   };  
+
+  const shuffleAlbum = () => {
+    if (albumSongs instanceof Playlist && albumSongs.songData.length > 0) {
+      setAlbumActive(true);
+      setTrack(albumSongs.current());
+    } else {
+      console.error("AlbumSongs is not a valid playlist:", albumSongs);
+    }
+  }
   
   useEffect(() => {
     if (albumActive && track) {
@@ -250,7 +259,8 @@ const PlayerContextProvider = ({ children }) => {
     setAlbumSongs,
     albumActive,
     setAlbumActive,
-    playAlbum
+    playAlbum,
+    shuffleAlbum
   };
 
   return <PlayerContext.Provider value={contextValue}>{children}</PlayerContext.Provider>;
