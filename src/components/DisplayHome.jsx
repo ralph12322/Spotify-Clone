@@ -19,7 +19,7 @@ const DisplayHome = () => {
     </div>
     <div className='mb-4'>
       <h1 className='my-5 font-bold text-2xl'>Song Collection</h1>
-      <div className='grid grid-cols-9 md:grid-cols-4 lg:grid-cols-6 gap-4 overflow-auto'>
+      <div className='grid grid-cols-9 md:grid-cols-4 lg:grid-cols-6 gap-4 overflow-x-auto'>
       {songData.map((item, index)=>(<SongItem key={index} name={item.name} desc={item.desc} id={item._id} image={item.image}/>))} 
       </div>
     </div>
