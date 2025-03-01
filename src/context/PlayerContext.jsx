@@ -18,7 +18,7 @@ export class Playlist {
   }
 
   unshuffle() {
-    this.songData = [this.originalOrder];
+    this.songData = [...this.originalOrder];
     this.currentIndex = 0;
     return this.songData;
   }
