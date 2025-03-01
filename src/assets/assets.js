@@ -53,6 +53,7 @@ import song1 from  './song1.mp3'
 import song2 from  './song2.mp3'
 import song3 from  './song3.mp3'
 import playAlbum from './playAlbum.png'
+import album from './album.png'
 
 export const assets = {
     bell_icon,
@@ -90,7 +91,8 @@ export const assets = {
     album_icon,
     upload_song,
     shuffleOn,
-    playAlbum
+    playAlbum,
+    album
 }
 
 export const albumsData = [
