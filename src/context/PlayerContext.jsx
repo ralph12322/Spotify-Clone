@@ -70,15 +70,16 @@ const PlayerContextProvider = ({ children }) => {
   const playAlbum = () => {
     if (albumSongs instanceof Playlist && albumSongs.songData.length > 0) {
       setAlbumActive(true);
-      setTrack(albumSongs.shuffle());
+      setTrack(albumSongs.current());
     } else {
       console.error("AlbumSongs is not a valid playlist:", albumSongs);
     }
   };  
 
   const shuffleAlbum = () => {
-    if (albumSongs instanceof Playlist && albumSongs.songData.length > 0) {
+     if (albumSongs instanceof Playlist && albumSongs.songData.length > 0) {
       setAlbumActive(true);
+      albumSongs.shuffle();
       setTrack(albumSongs.current());
     } else {
       console.error("AlbumSongs is not a valid playlist:", albumSongs);
