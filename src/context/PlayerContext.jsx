@@ -17,6 +17,12 @@ export class Playlist {
     return this.songData;
   }
 
+  unshuffle() {
+    this.songData = [this.originalOrder];
+    this.currentIndex = 0;
+    return this.songData;
+  }
+
   current() {
     return this.songData[this.currentIndex];
   }
@@ -69,6 +75,7 @@ const PlayerContextProvider = ({ children }) => {
 
   const playAlbum = () => {
     if (albumSongs instanceof Playlist && albumSongs.songData.length > 0) {
+      albumSongs.unshuffle();
       setAlbumActive(true);
       setTrack(albumSongs.current());
     } else {
