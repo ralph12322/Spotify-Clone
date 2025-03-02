@@ -13,13 +13,11 @@ export class Playlist {
 
   shuffle() {
     this.songData = [...this.originalOrder].sort(() => Math.random() - 0.5);
-    this.currentIndex = 0;
     return this.songData;
   }
 
   unshuffle() {
     this.songData = [...this.originalOrder];
-    this.currentIndex = 0;
     return this.songData;
   }
 
