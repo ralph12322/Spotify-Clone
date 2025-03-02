@@ -14,7 +14,7 @@ const DisplayHome = () => {
     <div className='mb-4'>
       <h1 className='my-5 font-bold text-2xl'>Album Collection</h1>
       <div className='flex overflow-auto w-full max-w-full space-x-4'>
-      {albumData.map((item, index)=>(<div key={index} className="min-w-[200px]">
+      {albumData.map((item, index)=>(<div key={index} className="min-w-[220px]">
       <AlbumItem name={item.name} desc={item.desc} id={item._id} image={item.image} />
     </div>))} 
       </div>
