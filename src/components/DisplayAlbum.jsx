@@ -25,9 +25,8 @@ const DisplayAlbum = ({ album }) => {
     <>
       <Navbar />
       <div className='mt-10 flex gap-8 flex-col md:flex-row md:items-end'>
-        <div className='w-full flex items-center justify-center'>
+        
           <img className='w-50 rounded' src={albumsData.image} alt='' />
-        </div>
         <div className='flex flex-col'>
           <p>Playlist</p>
           <h2 className='text-5xl font-bold mb-4 md:text-7xl'>{albumsData.name}</h2>
